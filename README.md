@@ -8,7 +8,8 @@
 - `ngrx` for state management
 
 ## Hosted website link
-- 
+- click on below url to go to github hosted site
+- [click here to go to github hosted site](https://deepak7panwar.github.io/oneioweather/#/weather)
 ## Basic Project structure
 
 - Shared generic rest-helper service is placed in `oneio/libs/util/` angular library
