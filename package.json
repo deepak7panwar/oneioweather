@@ -26,7 +26,7 @@
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "build:ci":  "ng build --prod --base-href 'https://deepak7panwar.github.io/oneio/'"
+    "build:ci":  "ng build --prod --base-href 'https://deepak7panwar.github.io/oneioweather/'"
   },
   "private": true,
   "dependencies": {
