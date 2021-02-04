@@ -1,0 +1,3 @@
+@function cssvar($name, $prefix: oneio) {
+  @return var(--#{$prefix}-#{$name});
+}
