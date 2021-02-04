@@ -1,0 +1,13 @@
+<div class="typeahead">
+  <div class="typeahead__input">
+    <ng-content></ng-content>
+    <ng-container *ngIf="isSearching | async; else search">
+      <div class="typeahead__loader">
+        <oneio-loader class="align-middle"></oneio-loader>
+      </div>
+    </ng-container>
+    <ng-template #search>
+      <div class="typeahead__loader typeahead__loader--font-big text-primary">&#8981;</div>
+    </ng-template>
+  </div>
+</div>

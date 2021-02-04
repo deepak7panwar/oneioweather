@@ -1,0 +1,41 @@
+<main>
+  <div class="row no-gutters main-container">
+    <h1>Get your weather forcast</h1>
+    <div class="col-12">
+      <div class="mt-2 mb-4 search-container oneio__card">
+        <form class="typeahead" [formGroup]="form">
+          <label for="typeahead-template" class="col-form-label">Search weather with country name</label>
+          <oneio-typeahead [isSearching]="isSearching">
+            <input placeholder="Search you country's weather" style="height: 50px" id="typeahead-template" type="text"
+              formControlName="country" class="form-control typeahead--input" [ngbTypeahead]="search$"
+              [resultTemplate]="rt" [inputFormatter]="formatter" [editable]="false" />
+          </oneio-typeahead>
+        </form>
+        <p class="mt-1 mb-1 text-danger" *ngIf="form.dirty && form.invalid">
+          * please choose option from above
+        </p>
+        <p class="mt-1 mb-1 text-danger" *ngIf="form.dirty && form.invalid && isSearchFailed">
+          * please check the spelling
+        </p>
+      </div>
+      <oneio-loader *ngIf="weatherCardLoding$ | async"></oneio-loader>
+      <div class="row no-gutters">
+        <ng-container *ngFor="let card of weatherCards$ | async; let l = count">
+          <oneio-card (delete)="removeCard(card)" [data]="card" class="col-12 mt-2 mb-2"></oneio-card>
+        </ng-container>
+        <ng-container *ngIf="weatherCards$ | async as a">
+          <div class="no-data" *ngIf="a.length == 0">
+            <fa-icon [icon]="faDatabase"></fa-icon>
+            Nothing to show
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</main>
+<oneio-footer></oneio-footer>
+
+<ng-template #rt let-r="result" let-t="term">
+  <img [src]="r.flag" class="mr-1" style="height: 100%; width: 40px; padding-right: 20px" alt="flag" />
+  <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+</ng-template>

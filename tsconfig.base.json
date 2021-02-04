@@ -1,0 +1,24 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@oneio/util": ["libs/util/src/index.ts"],
+      "@oneio/ui-widgets": ["libs/ui-widgets/src/index.ts"],
+      "@oneio/weather": ["libs/weather/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

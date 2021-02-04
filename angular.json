@@ -1,0 +1,240 @@
+{
+  "version": 1,
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "strict": true
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "oneio",
+  "projects": {
+    "oneio": {
+      "projectType": "application",
+      "root": "apps/oneio",
+      "sourceRoot": "apps/oneio/src",
+      "prefix": "oneio",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/oneio",
+            "index": "apps/oneio/src/index.html",
+            "main": "apps/oneio/src/main.ts",
+            "polyfills": "apps/oneio/src/polyfills.ts",
+            "tsConfig": "apps/oneio/tsconfig.app.json",
+            "aot": true,
+            "assets": ["apps/oneio/src/favicon.ico", "apps/oneio/src/assets"],
+            "styles": ["apps/oneio/src/styles.scss"],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "apps/oneio/src/assets/scss-variables"
+              ]
+            },
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/oneio/src/environments/environment.ts",
+                  "with": "apps/oneio/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "oneio:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "oneio:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "oneio:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/oneio/src/**/*.ts",
+              "apps/oneio/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/oneio"],
+          "options": {
+            "jestConfig": "apps/oneio/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "oneio-e2e": {
+      "root": "apps/oneio-e2e",
+      "sourceRoot": "apps/oneio-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/oneio-e2e/cypress.json",
+            "tsConfig": "apps/oneio-e2e/tsconfig.e2e.json",
+            "devServerTarget": "oneio:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "oneio:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/oneio-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "util": {
+      "projectType": "library",
+      "root": "libs/util",
+      "sourceRoot": "libs/util/src",
+      "prefix": "oneio",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/util/src/**/*.ts",
+              "libs/util/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/util"],
+          "options": {
+            "jestConfig": "libs/util/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ui-widgets": {
+      "projectType": "library",
+      "root": "libs/ui-widgets",
+      "sourceRoot": "libs/ui-widgets/src",
+      "prefix": "oneio",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/ui-widgets/tsconfig.lib.json",
+            "project": "libs/ui-widgets/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/ui-widgets/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ui-widgets/src/**/*.ts",
+              "libs/ui-widgets/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ui-widgets"],
+          "options": {
+            "jestConfig": "libs/ui-widgets/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "weather": {
+      "projectType": "library",
+      "root": "libs/weather",
+      "sourceRoot": "libs/weather/src",
+      "prefix": "oneio",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/weather/src/**/*.ts",
+              "libs/weather/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/weather"],
+          "options": {
+            "jestConfig": "libs/weather/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  }
+}

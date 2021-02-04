@@ -1,0 +1,51 @@
+<div class="main-card">
+  <button type="button" aria-label="close" (click)="removeCard()" class="btn btn-secondary main-card__button">
+    X
+  </button>
+  <div class="main-card__wrp">
+    <div class="main-card__item">
+      <div class="main-card__img">
+        <div class="weather-card">
+          <div class="weather-card__inner">
+            <div class="weather-card__temp">
+              {{ data?.weather?.current?.temperature }}
+            </div>
+            <div class="weather-card__icon"></div>
+            <div class="weather-card__day">
+              <fa-icon [icon]="faCalendarDay"></fa-icon>
+              {{ data?.weather?.location?.localtime | date: 'EEE dd MMM' }}
+            </div>
+            <div class="weather-card__location">
+              {{ data?.country?.capital }}
+            </div>
+            <div class="weather-card__date">
+              <fa-icon [icon]="faflag"></fa-icon>
+              {{ data?.country?.name }}
+            </div>
+            <div class="weather-card__time-updated">
+              <span>
+                <fa-icon [icon]="faCompass"></fa-icon>
+              </span>
+              [{{ data?.country?.latlng[0]| number: '1.0-2' }},{{ data?.country?.latlng[1] | number: '1.0-2'}}]
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main-card__extra-details">
+        <div class="main-card__fact-container">
+          <dl class="d-flex flex-column">
+            <oneio-list-item [label]="'Weather'" [value]="data?.weather?.current?.weather_descriptions">
+            </oneio-list-item>
+            <oneio-list-item [label]="'Wind Speed'" [value]="data?.weather?.current?.wind_speed"></oneio-list-item>
+            <oneio-list-item [label]="'Wind Degree'" [value]="data?.weather?.current?.wind_degree"></oneio-list-item>
+          </dl>
+          <dl class="d-flex flex-column">
+            <oneio-list-item [label]="'Population'" [value]="data?.country?.population"></oneio-list-item>
+            <oneio-list-item [label]="'Region'" [value]="data?.country?.region"></oneio-list-item>
+            <oneio-list-item [label]="'Area'" [value]="data?.country?.area"></oneio-list-item>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

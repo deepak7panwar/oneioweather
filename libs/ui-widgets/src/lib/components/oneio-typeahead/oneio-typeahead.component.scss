@@ -1,0 +1,23 @@
+.typeahead {
+  &__input {
+    position: relative;
+  }
+  &__loader {
+    height: 100%;
+    width: 50px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &--font-big {
+      font-size: 3em;
+      line-height: 1;
+    }
+  }
+}
+
+.dropdown-menu {
+  width: 100%;
+}

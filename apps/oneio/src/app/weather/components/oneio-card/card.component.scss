@@ -1,0 +1,138 @@
+@import 'variables';
+.weather-card {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#32d6e3, magenta);
+  padding: 20px;
+  border-radius: cssvar(box-radius);
+  box-sizing: border-box;
+  animation: hover-card 6s ease-in-out infinite forwards;
+  &__shadow {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    left: 0;
+    width: 300px;
+    height: 150px;
+    background: linear-gradient(to right, #32d6e3, magenta);
+    z-index: -1;
+    filter: blur(40px);
+    opacity: 0.3;
+  }
+  &__inner {
+    text-align: left;
+    div {
+      color: white;
+    }
+  }
+  &__temp {
+    font-size: 80px;
+    line-height: 0.8;
+    &::after {
+      content: '°';
+    }
+  }
+  &__icon {
+    position: absolute;
+    top: 15%;
+    right: 19%;
+    font-size: 50px;
+  }
+  &__location {
+    position: absolute;
+    bottom: 38px;
+    left: 20px;
+  }
+  &__time-updated {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    .shown:after {
+      content: '\f021';
+      font-size: 9px;
+      position: absolute;
+      right: -12px;
+      top: 3px;
+    }
+  }
+}
+.main-card {
+  position: relative;
+  margin: auto;
+  background: #fff;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  padding: 25px;
+  border-radius: cssvar(box-radius);
+  transition: all 0.3s;
+  &__button {
+    position: absolute;
+    right: 12px;
+    top: -12px;
+  }
+  &__extra-details {
+    width: 100%;
+    display: flex;
+  }
+  &__fact-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    align-items: flex-end;
+  }
+  &:hover,
+  &:focus {
+    outline: none;
+    transform: translateX(-5px);
+    &::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      border: 2px solid cssvar(color-primary);
+    }
+  }
+  @media screen and (max-width: 992px) {
+    max-width: 680px;
+    height: 400px;
+  }
+  @media screen and (max-width: 768px) {
+    min-height: 500px;
+    height: auto;
+    margin: 50px auto;
+  }
+
+  &__item {
+    display: flex;
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+  &__img {
+    width: 300px;
+    flex-shrink: 0;
+    height: 200px;
+    transform: translateX(-60px);
+    overflow: hidden;
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.8;
+    }
+    @media screen and (max-width: 768px) {
+      transform: translateY(-50%);
+      width: 90%;
+    }
+    @media screen and (max-width: 576px) {
+      width: 95%;
+    }
+  }
+}

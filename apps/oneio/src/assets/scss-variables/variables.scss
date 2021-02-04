@@ -1,0 +1,18 @@
+@import './functions/main';
+@import './mixins/main';
+:root  {
+  /* Creating a variable */
+  --oneio-text-color: #000000;
+  --oneio-primary-title-size: 2rem;
+  --oneio-color-primary: #371777;
+  --oneio-color-secondary: #0077b3;
+  --oneio-color-warning: #e28413;
+  --oneio-color-danger: #be0027;
+  --oneio-color-background: #fff;
+  --oneio-color-background2: #f3f9fc;
+  --oneio-font-size: 0.8rem;
+  --oneio-box-radius: 0.5em;
+  --oneio-border-width: 1.5px;
+}
+
+$border-radius: cssvar(box-radius);
