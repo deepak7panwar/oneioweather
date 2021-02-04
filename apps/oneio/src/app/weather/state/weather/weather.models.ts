@@ -6,5 +6,5 @@ export interface WeatherEntity {
   weather: IWeatherObj;
   country: ICountryName;
   entryOrder: number;
-  id: number; // Primary ID
+  id: string; // Primary ID
 }

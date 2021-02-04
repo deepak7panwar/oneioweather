@@ -37,9 +37,10 @@ const weatherReducer = createReducer(
   })),
   on(WeatherActions.pushWeatherToList, (state, { weather }) => {
     if (state.ids.length === 20) {
-      const s = state.ids.includes(weather.country.numericCode)
+      const stateIds = state.ids as string[];
+      const s = stateIds.includes(weather.country.numericCode)
         ? state
-        : weatherAdapter.removeOne(state.ids[19], state);
+        : weatherAdapter.removeOne(stateIds[19], state);
       return weatherAdapter.addOne(weather, { ...s, loaded: true });
     }
     return weatherAdapter.addOne(weather, { ...state, loaded: true });

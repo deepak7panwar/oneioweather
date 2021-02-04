@@ -34,7 +34,7 @@ export class WeatherEffects {
                 weather: {
                   weather: d,
                   entryOrder: new Date().getTime(),
-                  id: parseInt(action.country.numericCode),
+                  id: (action.country.numericCode),
                   country: action.country,
                 },
               });
