@@ -1,4 +1,4 @@
-# Oneio
+# weather assignment
 
 ## Tools used in the project
 
@@ -21,3 +21,7 @@
 - step 1: `npm install` to install the dependencies run
 - step 2: `npm start` to start the project in dev mode
 - step 3: [http://localhost:4200](http://localhost:4200) open this url to see the locally running application
+
+
+
+
